@@ -12,7 +12,7 @@ jobs:
     - name: echo the date
       run: echo "The current time and date is $(date)"
     - name: echo the current branch
-      run: echo ${ {github.ref_name }}
+      run: echo ${{ github.ref_name }}
 
   test_and_deploy:
     runs-on: ubuntu-latest
