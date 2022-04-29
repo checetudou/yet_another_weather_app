@@ -12,7 +12,7 @@ jobs:
     - name: echo the date
       run: echo "The current time and date is $(date)"
     - name: echo the current branch
-      run: echo ${{ github.ref_name }}
+      run: echo ${ {github.ref_name }}
 
   test_and_deploy:
     runs-on: ubuntu-latest
@@ -33,4 +33,12 @@ jobs:
 
     - name: Run the test
       run: mvn clean test
+    
+    - name: Deploy to heroku
+      uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{ secrets.heroku_key }}
+          heroku_app_name: ${{ secrets.heroku_app_name }}
+          heroku_email: ${{ secrets.email }}
+          branch: ${ {github.ref_name }}
 
